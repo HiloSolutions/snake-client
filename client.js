@@ -1,26 +1,17 @@
 //Module to connect to the server
 const net = require("net");
 
-//establishes conenction with the game server
+//returns an object that can be used to interact with the server. the object returned by connect() should be passed into setupInput()
 const connect = () => {
   const conn = net.createConnection({
     host: '165.227.47.243',
     port: 50541
   });
 
-  //interpret incoming data
-  conn.setEncoding("utf8");
-
   //when the connection is first established letting us know that we have successfully connected to th game.
   conn.on("connect",() => {
     console.log("You are successfully connected to the game!");
     conn.write("Name: LEJ"); //establish name so other players can see it
-  });
-
-  conn.on("connect",() => {
-    setInterval(() => {
-      //conn.write("Move: up");
-    }, "300");
   });
 
 
@@ -29,15 +20,12 @@ const connect = () => {
     console.log("Server Says:", data);
   });
 
+  //interpret incoming data
+  conn.setEncoding("utf8");
 
-
-
-  return conn;
+  return conn; //the object returned by connect() should be passed into setupInput()
 };
 
-
-console.log("Connecting...");
-connect();
 
 
 //exports player connection
