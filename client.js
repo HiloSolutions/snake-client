@@ -17,6 +17,12 @@ const connect = () => {
     conn.write("Name: LEJ"); //establish name so other players can see it
   });
 
+  conn.on("connect",() => {
+    setInterval(() => {
+      //conn.write("Move: up");
+    }, "300");
+  });
+
 
   //handle incoming data and console.log it for the player.
   conn.on("data", (data) => {
