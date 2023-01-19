@@ -1,11 +1,12 @@
 //Module to connect to the server
 const net = require("net");
+const { IP, PORT } = require("./constants");
 
 //returns an object that can be used to interact with the server. the object returned by connect() should be passed into setupInput()
 const connect = () => {
   const conn = net.createConnection({
-    host: '165.227.47.243',
-    port: 50541
+    host: IP,
+    port: PORT
   });
 
   //when the connection is first established letting us know that we have successfully connected to th game.
